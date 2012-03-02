@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="operacao_comercial_menu_cbc" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mkgnego_id" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[new BigDecimal("1")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Fernando\\Relatorio\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[SELECT *
+FROM mkg_menu_cbc_vw
+WHERE  id	= $P{mkgnego_id}]]>
+	</queryString>
+	<field name="codg_negociacao" class="java.math.BigDecimal"/>
+	<field name="desc_familia" class="java.lang.String"/>
+	<field name="desc_modelo" class="java.lang.String"/>
+	<field name="numr_ano_modelo" class="java.math.BigDecimal"/>
+	<field name="numr_ano_fabricacao" class="java.math.BigDecimal"/>
+	<field name="codg_chassis" class="java.lang.String"/>
+	<field name="numr_licenca" class="java.lang.String"/>
+	<field name="numr_cgc" class="java.lang.String"/>
+	<field name="desc_razao_social" class="java.lang.String"/>
+	<field name="valr_total_negociacao" class="java.math.BigDecimal"/>
+	<field name="id" class="java.math.BigDecimal"/>
+	<field name="familia_id" class="java.math.BigDecimal"/>
+	<field name="valr_tac" class="java.math.BigDecimal"/>
+	<field name="valr_fator" class="java.math.BigDecimal"/>
+	<field name="desc_logo" class="java.io.InputStream"/>
+	<field name="nome_empresa" class="java.lang.String"/>
+	<field name="valr_veic_troca" class="java.math.BigDecimal"/>
+	<field name="valr_veic_fin" class="java.math.BigDecimal"/>
+	<field name="valr_veic_entrada" class="java.math.BigDecimal"/>
+	<field name="qtde_parcela" class="java.math.BigDecimal"/>
+	<field name="valr_parcela" class="java.math.BigDecimal"/>
+	<variable name="total1" class="java.math.BigDecimal" resetType="None" calculation="System"/>
+	<variable name="total2" class="java.math.BigDecimal" resetType="None" calculation="System"/>
+	<variable name="total3" class="java.math.BigDecimal" resetType="None" calculation="System"/>
+	<variable name="total4" class="java.math.BigDecimal" resetType="None" calculation="Sum"/>
+	<title>
+		<band height="192" splitType="Stretch">
+			<textField>
+				<reportElement x="254" y="50" width="300" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desc_razao_social}+" - "+$F{numr_cgc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="91" y="76" width="100" height="15"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codg_negociacao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="702" y="76" width="100" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="13" width="100" height="20"/>
+				<textElement>
+					<font size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_empresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="12" y="76" width="82" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Código Negociação : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="665" y="76" width="37" height="15"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<image>
+				<reportElement x="13" y="23" width="66" height="47"/>
+				<imageExpression><![CDATA["images/marca.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="91" width="802" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMAÇÕES DO VEÍCULO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="104" width="100" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="182" y="104" width="100" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Modelo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="104" width="100" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ano:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="507" y="104" width="100" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número do Chassi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="678" y="104" width="100" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Placa:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="23" y="122" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desc_familia}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="182" y="122" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desc_modelo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="353" y="122" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numr_ano_modelo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="507" y="122" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codg_chassis}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="678" y="122" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numr_licenca}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="142" width="802" height="11"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORMAÇÕES DO FINANCIAMENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="154" width="130" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Veículo Aquisição:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="163" y="154" width="132" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor do Veículo de Troca:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="314" y="154" width="100" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor de Entrada:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="154" width="121" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total Financiado:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="562" y="154" width="90" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtde. Parcelas:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="676" y="154" width="100" height="18"/>
+				<textElement textAlignment="Center">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor da Parcela:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement isPrintRepeatedValues="false" x="429" y="172" width="121" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valr_veic_fin} != null ? $F{valr_veic_fin} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement isPrintRepeatedValues="false" x="163" y="172" width="132" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valr_veic_troca} != null ? $F{valr_veic_troca} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement isPrintRepeatedValues="false" x="676" y="172" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? $F{valr_parcela} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="562" y="172" width="90" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_parcela} != null ? $F{qtde_parcela} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement isPrintRepeatedValues="false" x="11" y="172" width="130" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valr_total_negociacao}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement isPrintRepeatedValues="false" x="314" y="172" width="100" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valr_veic_entrada} != null ? $F{valr_veic_entrada} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="101" width="802" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="152" width="802" height="1"/>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="17">
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="11" y="0" width="181" height="16" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="mkgnego_id">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="total_pacote" toVariable="total1" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub_pkg_ouro.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="204" y="0" width="181" height="16" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="mkgnego_id">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="total_pacote" toVariable="total2" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub_pkg_prata.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="397" y="0" width="180" height="16" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="mkgnego_id">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="total_kit" toVariable="total3" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub_pkg_bronze.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement isPrintRepeatedValues="false" x="589" y="0" width="181" height="16" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="mkgnego_id">
+					<subreportParameterExpression><![CDATA[$F{id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="total_pacote" toVariable="total4"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub_pkg_personalizado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="130">
+			<rectangle>
+				<reportElement x="398" y="35" width="181" height="35"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="204" y="35" width="182" height="35"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="12" y="35" width="181" height="35"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="398" y="0" width="181" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="204" y="0" width="182" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="12" y="0" width="181" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" x="204" y="0" width="182" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" x="12" y="0" width="181" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="Float" x="11" y="15" width="182" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="66" y="0" width="67" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pacote:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="266" y="0" width="64" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pacote:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="Float" x="205" y="15" width="182" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total2}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement positionType="Float" x="398" y="0" width="181" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="453" y="0" width="64" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pacote:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement positionType="Float" x="399" y="15" width="181" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total3}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="12" y="35" width="181" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="13" y="35" width="24" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Opç:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="41" y="35" width="25" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="35" width="67" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vlr Par:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="35" width="57" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Por Dia:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="204" y="35" width="182" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="205" y="35" width="24" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Opç:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="35" width="25" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="35" width="67" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vlr Par:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="35" width="57" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Por Dia:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="398" y="35" width="181" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="399" y="35" width="24" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Opç:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="423" y="35" width="25" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="35" width="67" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vlr Par:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="520" y="35" width="57" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Por Dia:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="44" y="55" width="26" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_parcela} != null ? $F{qtde_parcela} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="55" width="26" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_parcela} != null ? $F{qtde_parcela} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="422" y="55" width="26" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_parcela} != null ? $F{qtde_parcela} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="13" y="70" width="796" height="48"/>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="70" y="55" width="65" height="17"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? $F{valr_parcela}.add($V{total1}.divide($F{qtde_parcela}, new MathContext(100))) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="259" y="55" width="71" height="17"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? $F{valr_parcela}.add($V{total2}.divide($F{qtde_parcela}, new MathContext(100))) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="449" y="55" width="72" height="17"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? $F{valr_parcela}.add($V{total3}.divide($F{qtde_parcela}, new MathContext(100))) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="133" y="54" width="61" height="17"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? ($F{valr_parcela}.add($V{total1}.divide($F{qtde_parcela}, new MathContext(100)))).subtract($F{valr_parcela}).divide(new BigDecimal("31"),new MathContext(100)) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="330" y="55" width="58" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? ($F{valr_parcela}.add($V{total2}.divide($F{qtde_parcela}, new MathContext(100)))).subtract($F{valr_parcela}).divide(new BigDecimal("31"),new MathContext(100)) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="521" y="55" width="58" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? ($F{valr_parcela}.add($V{total3}.divide($F{qtde_parcela}, new MathContext(100)))).subtract($F{valr_parcela}).divide(new BigDecimal("31"),new MathContext(100)) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="589" y="35" width="181" height="35"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="589" y="0" width="181" height="30"/>
+			</rectangle>
+			<rectangle>
+				<reportElement positionType="Float" x="589" y="0" width="181" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement positionType="Float" x="652" y="0" width="64" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Pacote:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="589" y="35" width="181" height="15" backcolor="#CCCCCC"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="712" y="35" width="57" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Por Dia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="615" y="35" width="25" height="15"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="589" y="35" width="24" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Opç:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="640" y="35" width="67" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vlr Par:]]></text>
+			</staticText>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="589" y="15" width="181" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$V{total4} != null ? $V{total4} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="613" y="55" width="26" height="17"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qtde_parcela} != null ? $F{qtde_parcela} : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="639" y="55" width="72" height="17"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? $F{valr_parcela}.add($V{total4}.divide($F{qtde_parcela}, new MathContext(100))) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="711" y="55" width="58" height="16"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{valr_parcela} != null ? ($F{valr_parcela}.add($V{total4}.divide($F{qtde_parcela}, new MathContext(100)))).subtract($F{valr_parcela}).divide(new BigDecimal("31"),new MathContext(100)) : new BigDecimal("0")]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

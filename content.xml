@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='iso-8859-1'?>
+<pdf creator="guillaume" subject="xml2pdf demo" title="xml2pdf demo title">
+    <stylesheet file="style.txt" />
+    
+    <body format='A4' unit='mm' margins='10' orientation='portrait' marginleft='10' marginright='10' marginbottom='10' margintop='10'>
+        <header>
+            <image file="/Users/eric/Sites/xml2pdf/demo/logo_clair.png" 
+                top="10" left="0" />
+            <date align="C" border="1" fill="1" fillcolor="#00ff00"/>
+            <paragraph width="50" top="20" left="10" position="absolute" 
+                border="1">first header paragraph</paragraph>
+            <paragraph width="50" top="20" left="150" position="absolute" 
+                border="1">second header paragraph</paragraph>
+        </header>
+        <footer>
+            <date align="left" format='Y-m-d'/>
+            <numerotation align="right"/>
+        </footer>
+        <filigree fontstyle="B" fontsize="90" rotation="45" left="35" top="240"
+            fontcolor="#dcdcdc" start="1" end="1">-- TEXT --</filigree>
+        <filigree fontstyle="B" fontsize="90" left="20" top="140"
+            fontcolor="#ff0000" start="2" end="3">-- GRAPH --</filigree>
+        <page fontsize='14' >
+            <image file="/Users/eric/Sites/xml2pdf/demo/geelwebdotorg.png" />
+            <ln lineheight='40'/>
+            <link ref="graphPage" name="lien interne"/><ln/>
+            <link url="http://www.geelweb.org" name="lien externe"/><ln/>
+            <text fontcolor='#808080' textalign='j'>Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b> Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b> Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b> Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b></text>
+            <text useStyle="0" fontcolor='#808080' textalign='j'>Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b> Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b> Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b> Hello World! <b>Hello World!</b> <u>Hellow World!</u> <i>Hellow World</i> <b><u><i>Hellow World!</i></u></b></text>
+            
+            <paragraph width="50" border="1" bordercolor="#c4e3e3" fontsize="20" 
+                left="50" top="150" position="absolute" fill="1" 
+                fillcolor="#c4e9f8">my paragraph is very beautifull !</paragraph>
+            <paragraph width="50" border="1" fontsize="20" fill="1" 
+                fillcolor="#c4e9f8">my paragraph is very beautifull !</paragraph>
+            <paragraph align='right' width="50" border="1" fontsize="20" fill="1" 
+                fillcolor="#c4e9f8">my paragraph is very beautifull !</paragraph>
+            <paragraph position='absolute' width="50" border="1" left="30" 
+                top="130" fontsize="20" fill="1" fillcolor="#c4e9f8">my paragraph is very beautifull !</paragraph>
+            <paragraph align='center' width="50" border="1" fontsize="20" 
+                fill="1" fillcolor="#c4e9f8">my paragraph is very beautifull !</paragraph>
+            
+        </page>
+        <page>
+            <graph id='graphPage' type='circle' width='100' height='80' mode='3D' 
+                legend='%l (%p)' fontsize='10'>
+                <value legend='Lille' data='1510' color='#f0f5ff'/>
+                <value legend='Paris' data='1610' color='#feefc1'/>
+                <value legend='Toulouse' data='1400' color='#ffaaaa'/>
+                <value legend='Lyon' data='700'/>
+                <value legend='Bordeaux' data='1001'/>
+            </graph>
+
+            <graph type='hbar' width='100' height='30' left='80' top='-30' 
+                legend='%l : %v (%p)' max='190'>
+                <value legend='valeur' data='150'/>
+                <value legend='moins' data='42'/>
+                <value legend='plus' data='180'/>
+            </graph>
+
+            <graph type='vbar' width='100' height='100' color='#0197cb' 
+                legend='%l' max='190' repere='10'>
+                <value legend='2003' data='150'/>
+                <value legend='2004' data='42'/>
+                <value legend='2005' data='180'/>
+            </graph>
+        </page>
+        <page fontsize="14">
+            <graph type='line' width='120' height='50' left='20' top='20' 
+                position='relative' color='#0197cb' legend='' repere='10'>
+                <line legend='courbe1'>
+                    <point x='0' y='10'/>
+                    <point x='5' y='15'/>
+                    <point x='10' y='22'/>
+                    <point x='15' y='1'/>
+                    <point x='20' y='12'/>
+                    <point x='25' y='15'/>
+                </line>
+                <line legend='courbe2' color='#0197cb'>
+                    <point x='0' y='17'/>
+                    <point x='8' y='15'/>
+                    <point x='12' y='5'/>
+                    <point x='15' y='6'/>
+                    <point x='20' y='12'/>
+                    <point x='25' y='8'/>
+                </line>
+                <line legend='courbe3' color='#feefc1'>
+                    <point x='0' y='20'/>
+                    <point x='8' y='4'/>
+                    <point x='12' y='16'/>
+                    <point x='15' y='18'/>
+                    <point x='20' y='5'/>
+                    <point x='25' y='20'/>
+                </line>
+            </graph>
+        </page>
+        <page>
+            <table id="table" lineheight="5" left="30" top="30">
+                <tt textalign="center" border="0" fontstyle="bu">Table title extends tt iuh h iug jg dyb  gyg bgyug yug ygyug y yu gyu gygy yufgytf gyu yg yg uy gyu gyu gyugyu gyu g k ho un gy b hn f b g jbgtfytf bfgytvbfuf tv</tt>
+                <th fill="1" fillcolor="#e3e3e3">
+                    <td width="50%">first colmn header</td>
+                    <td>second colmn header</td>
+                    <td width="20">third colmn header</td>
+                </th>
+                <tr>
+                    <td>first column</td>
+                    <td>second column</td>
+                    <td>third column</td>
+                </tr>
+                <tr>
+                    <td>first column line 2</td>
+                    <td textalign="J" font="helvetica" fill="1" fillcolor="#c4e9f8" fontstyle="b">second column line 2 zevhuzhv  vy syvs sivs y ycg sgc uisg cu  cg iucghui cyug  igu g</td>
+                    <td textalign="C">third column line 2</td>
+                </tr>
+            </table>
+
+            <text>du texte <b>en gras</b>, <i>en italique</i>, <u>souligné</u> <b><u><i>ou les trois</i></u></b>. hjfb hvbbvu <br/>uibvbv dvbvd bfgh fhdfhf hdhdhft fthdtd gdrtgdg gdvdg dtd <red>c'est à-peu-prés par ici</red> que la ligne est coupé automatiquement dhdhdh dh et ceci est la fin de la ligne</text>
+            <barcode x="20" y="20" barcode="654987576532" norm="EAN13"/>
+            <barcode x="20" y="40" barcode="65498757653" norm="UPC_A"/>
+            <barcode x="20" y="70" barcode="Ann Arbor, MI 48109-1109" norm="POSTNET"/>
+            <barcode x="20" y="90" barcode="12345678" norm="INTERLEAVED25"/>
+            <barcode x="20" y="110" barcode="Code 39" norm="CODE39"/>
+            <barcode x="20" y="140" barcode="Code 39" norm="CODE39EXTEND"/>
+            <literal> voici du contenue non <page></page> , <interprete valeur="foo" option="bar">content tag</interprete> les <tags/> sont écrit!</literal>
+        </page>
+    </body>
+</pdf>

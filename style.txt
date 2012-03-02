@@ -1,0 +1,16 @@
+.b{
+font-style: B;
+}
+.u{
+font-style: U;
+}
+.i{
+font-style: I;
+}
+.br{
+indent: 2;
+}
+.red{
+color:#ff0000;
+}
+

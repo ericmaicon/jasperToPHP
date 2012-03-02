@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_produtos_pkg_personalizado" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mkgnego_id" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[new BigDecimal("1")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_grupo_produto" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[new BigDecimal("49141")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT vp.desc_acessorio,
+       cbn.valr_venda
+FROM cbc_produto_negociacao as cbn,
+     vci_produto as vp
+WHERE cbn.mkgnego_id = $P{mkgnego_id}
+  AND cbn.cbcpaco_id IS NULL
+  AND vp.id = cbn.vciprod_id
+  AND vp.vcigrpr_id = $P{id_grupo_produto}]]>
+	</queryString>
+	<field name="desc_acessorio" class="java.lang.String"/>
+	<field name="valr_venda" class="java.math.BigDecimal"/>
+	<variable name="total_pacote" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valr_venda}]]></variableExpression>
+	</variable>
+	<background>
+		<band height="188">
+			<rectangle>
+				<reportElement x="0" y="0" width="180" height="185"/>
+			</rectangle>
+		</band>
+	</background>
+	<detail>
+		<band height="10">
+			<textField>
+				<reportElement x="3" y="0" width="100" height="10"/>
+				<textElement>
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{desc_acessorio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="100" height="10"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valr_venda}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

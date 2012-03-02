@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_pkg_personalizado" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="NoDataSection" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="mkgnego_id" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[new BigDecimal("1")]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Fernando\\Relatorio\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT desc_tipo as produto_personalizado,
+       id as id_grupo_produto
+FROM cbc_grupo_produto_vw
+WHERE mkgnego_id = $P{mkgnego_id}
+  AND cbcpaco_id is null
+ORDER BY numr_ordem]]>
+	</queryString>
+	<field name="produto_personalizado" class="java.lang.String"/>
+	<field name="id_grupo_produto" class="java.math.BigDecimal"/>
+	<variable name="total_pacote" class="java.math.BigDecimal" calculation="Sum"/>
+	<columnHeader>
+		<band height="58">
+			<image>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="180" height="58"/>
+				<imageExpression><![CDATA["images/topo_prata.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="67" y="38" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PERSONALIZADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19">
+			<rectangle>
+				<reportElement x="0" y="0" width="180" height="11" isRemoveLineWhenBlank="true" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[$F{produto_personalizado} != null]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField>
+				<reportElement x="0" y="0" width="179" height="9" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto_personalizado}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="9" width="178" height="9"/>
+				<subreportParameter name="id_grupo_produto">
+					<subreportParameterExpression><![CDATA[$F{id_grupo_produto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mkgnego_id">
+					<subreportParameterExpression><![CDATA[$P{mkgnego_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="total_pacote" toVariable="total_pacote" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub_produtos_pkg_personalizado.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<noData>
+		<band height="255">
+			<rectangle>
+				<reportElement x="0" y="59" width="177" height="194" backcolor="#CCCCCC"/>
+			</rectangle>
+			<image>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="180" height="58"/>
+				<imageExpression><![CDATA["C:\\Users\\Fernando\\Img\\topo_prata.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="70" y="41" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[PERSONALIZADO]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>

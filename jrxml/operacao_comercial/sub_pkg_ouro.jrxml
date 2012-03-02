@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sub_pkg_ouro" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Fernando\\Relatorio\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mkgnego_id" class="java.math.BigDecimal">
+		<defaultValueExpression><![CDATA[new BigDecimal("1")]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT desc_tipo as produto_ouro,
+       id as id_grupo_produto,
+       cbcpaco_id,
+       (SELECT desc_pacote
+        FROM cbc_pacote
+        WHERE cbcpaco_id = cbc_pacote.id) as pacote
+FROM cbc_grupo_produto_vw
+WHERE mkgnego_id = $P{mkgnego_id}
+  AND numr_posicao = 1
+ORDER BY numr_ordem]]>
+	</queryString>
+	<field name="produto_ouro" class="java.lang.String"/>
+	<field name="id_grupo_produto" class="java.math.BigDecimal"/>
+	<field name="cbcpaco_id" class="java.math.BigDecimal"/>
+	<field name="pacote" class="java.lang.String"/>
+	<variable name="total_pacote" class="java.math.BigDecimal" calculation="Sum"/>
+	<columnHeader>
+		<band height="58">
+			<image>
+				<reportElement isPrintRepeatedValues="false" x="0" y="0" width="180" height="58"/>
+				<imageExpression><![CDATA["images/topo_prata.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement isPrintRepeatedValues="false" x="73" y="38" width="100" height="20"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pacote}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="19">
+			<rectangle>
+				<reportElement x="0" y="0" width="180" height="11" isRemoveLineWhenBlank="true" backcolor="#CCCCCC">
+					<printWhenExpression><![CDATA[$F{produto_ouro} != null]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField pattern="">
+				<reportElement x="0" y="0" width="179" height="9" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{produto_ouro} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto_ouro}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="9" width="178" height="9">
+					<printWhenExpression><![CDATA[$F{produto_ouro} != null]]></printWhenExpression>
+				</reportElement>
+				<subreportParameter name="id_grupo_produto">
+					<subreportParameterExpression><![CDATA[$F{id_grupo_produto}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="cbcpaco_id">
+					<subreportParameterExpression><![CDATA[$F{cbcpaco_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="mkgnego_id">
+					<subreportParameterExpression><![CDATA[$P{mkgnego_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="total_pacote" toVariable="total_pacote" calculation="Sum"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sub_produtos_pkg_ouro.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>
